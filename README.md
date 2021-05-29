@@ -20,7 +20,7 @@ An example usage from another service on the same machine would be:
 
 And output would be something like:
 ```json
-{ "solution": 'JBKAMB' }
+{ "solution": "JBKAMB" }
 ```
 
 If you have an URL rather than a file (most probable), this async function could be used instead:
