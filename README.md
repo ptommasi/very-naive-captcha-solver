@@ -1,6 +1,9 @@
-A very simple, very naive, sometime unreliable and very unsecure docker image which just takes in input a base64 encoded image and returns the text within.
+A very simple, very naive, sometime unreliable and very unsecure docker image which just takes in input a base64 encoded
+image and returns the text within, also [available on dockerhub](https://hub.docker.com/r/pierpytom/very-naive-captcha-solver).
 
-Use case is very simple captchas, and actually it doesn't always work either, but it is cheaper to query this service first and then fallback on 2captcha in case of error.
+Use case is very simple captchas, and actually it doesn't always work either, but it is cheaper to query this service 
+first and then fallback on 2captcha in case of error (and there are existing libraries for that, e.g. check
+[Furry/2captcha github page](https://github.com/Furry/2captcha)).
 
 Default port is 4184, but it can be changed using the value of the $PORT environment variable.
 
@@ -17,13 +20,15 @@ An example usage from another service on the same machine would be:
 
 And output would be something like:
 ```json
-{ solution: 'JBKAMB' }
+{ "solution": 'JBKAMB' }
 ```
 
 If you have an URL rather than a file (most probable), this async function could be used instead:
-```
+```javascript
 async function getBase64(url: string) {
   const response = await axios.get(url, { responseType: 'arraybuffer' });
   return Buffer.from(response.data, 'binary').toString('base64');
 }
 ```
+
+Software is provided as is under MIT license.
